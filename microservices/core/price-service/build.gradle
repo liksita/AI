@@ -193,7 +193,7 @@ task createMysqlImage(type:DockerBuildImage){
  */
 task buildImage(type: DockerBuildImage, dependsOn: [createDockerfile]) {
     inputDir = createDockerfile.destFile.parentFile
-    tag = 'price-revenue'
+    tag = 'price'
 }
 
 
@@ -227,8 +227,8 @@ task startMysql(type: DockerStartContainer, dependsOn: [createMysqlContainer]) {
 }
 
 task createPrice(type: DockerCreateContainer, dependsOn: [startMysql]) {
-    imageId = "price-revenue"
-    containerName = "price-revenue-service"
+    imageId = "price"
+    containerName = "price-service"
     portBindings = ["8080:8080"]
     links = ["mysql:mysql"]
 }

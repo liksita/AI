@@ -5,9 +5,7 @@ import de.hawhamburg.microservices.composite.price.service.PriceCompositeIntegra
 import de.hawhamburg.microservices.core.price.jpa.domain.Price;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import se.callista.microservices.util.ServiceUtils;
 
 import javax.ws.rs.Consumes;
@@ -31,7 +29,7 @@ public class PriceCompositeController {
     @Autowired
     private ServiceUtils utils;
 
-    @RequestMapping(value = "/price/{flightId}")
+    @RequestMapping(value = "/price/{flightId}", method = RequestMethod.GET)
     public ResponseEntity<CalculatedPrice> getPrice(@PathVariable final UUID flightId){
         ResponseEntity<Price> priceResult = priceCompositeIntegration.getPrice(flightId);
         if(!priceResult.getStatusCode().is2xxSuccessful()){
@@ -40,4 +38,40 @@ public class PriceCompositeController {
         return utils.createOkResponse(new CalculatedPrice(priceResult.getBody()));
     }
 
+
+    @RequestMapping(value = "/price", method = RequestMethod.POST)
+    public ResponseEntity<CalculatedPrice> createPrice(@RequestBody final Price price){
+        ResponseEntity<Price> priceResult = priceCompositeIntegration.createPrice(price);
+        if(!priceResult.getStatusCode().is2xxSuccessful()){
+            return utils.createResponse(null,priceResult.getStatusCode());
+        }
+        return utils.createOkResponse(new CalculatedPrice(priceResult.getBody()));
+    }
+
+    @RequestMapping(value = "/price", method = RequestMethod.DELETE)
+    public ResponseEntity<CalculatedPrice> deletePrice(@RequestBody final Price price){
+        ResponseEntity<Price> priceResult = priceCompositeIntegration.removePrice(price);
+        if(!priceResult.getStatusCode().is2xxSuccessful()){
+            return utils.createResponse(null,priceResult.getStatusCode());
+        }
+        return utils.createOkResponse(new CalculatedPrice(priceResult.getBody()));
+    }
+
+    @RequestMapping(value = "/price", method = RequestMethod.PATCH)
+    public ResponseEntity<CalculatedPrice> deletePrice(@RequestBody final Price price){
+        ResponseEntity<Price> priceResult = priceCompositeIntegration.patchPrice(price);
+        if(!priceResult.getStatusCode().is2xxSuccessful()){
+            return utils.createResponse(null,priceResult.getStatusCode());
+        }
+        return utils.createOkResponse(new CalculatedPrice(priceResult.getBody()));
+    }
+
+    @RequestMapping(value = "/price", method = RequestMethod.PUT)
+    public ResponseEntity<CalculatedPrice> deletePrice(@RequestBody final Price price){
+        ResponseEntity<Price> priceResult = priceCompositeIntegration.putPrice(price);
+        if(!priceResult.getStatusCode().is2xxSuccessful()){
+            return utils.createResponse(null,priceResult.getStatusCode());
+        }
+        return utils.createOkResponse(new CalculatedPrice(priceResult.getBody()));
+    }
 }

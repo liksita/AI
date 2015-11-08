@@ -3,6 +3,8 @@ package de.hawhamburg.microservices.composite.price.util;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import de.hawhamburg.microservices.core.price.jpa.domain.Price;
+import de.hawhamburg.microservices.core.price.util.*;
+import de.hawhamburg.microservices.core.price.util.WrappedList;
 import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;

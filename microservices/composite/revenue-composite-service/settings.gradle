@@ -8,3 +8,7 @@ project(":util").projectDir = file("../../../util")
 
 include ":price-service"
 project(":price-service").projectDir = file("../../core/price-service")
+
+
+include ":price-composite"
+project(":price-composite").projectDir = file("../../price-compiste-service")

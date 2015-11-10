@@ -1,6 +1,8 @@
 package de.hawhamburg.microservices.composite.revenue.model;
 
-import de.hawhamburg.microservices.core.price.jpa.domain.Price;
+import de.hawhamburg.microservices.composite.price.model.CalculatedPrice;
+
+import java.util.UUID;
 
 /**
  * Created by Ole on 07.11.2015.
@@ -8,13 +10,8 @@ import de.hawhamburg.microservices.core.price.jpa.domain.Price;
 
 public class CalculatedRevenue {
 
-    private final double FIRST = 50;
-    private final double ECONOMY = 20;
-    private final double INTERNET = 1.0;
-    private final double TRAVELOFFICE = 1.2;
-    private final double COUNTER = 0.8;
-
     private double basicPrice;
+    private UUID id;
     private double firstClassPriceByInternet;
     private double economyClassPriceByInternet;
     private double firstClassPriceByTravelOffice;
@@ -22,69 +19,60 @@ public class CalculatedRevenue {
     private double firstClassPriceByCounter;
     private double economyClassPriceByCounter;
 
-    public CalculatedRevenue(Price price){
-        this.basicPrice = price.getValue();
-        buildPrices();
+
+    private double revenue;
+    private int soldTicketsFirstClassInternet = 10;
+    private int soldTicketsEconomyClassInternet = 20;
+    private int soldTicketsFirstClassTravelOffice = 5;
+    private int soldTicketsEconomyClassTravelOffice = 30;
+    private int soldTicketsFirstClassCounter = 2;
+
+    public int getSoldTicketsEconomyClassCounter() {
+        return soldTicketsEconomyClassCounter;
     }
 
-    private void calculatePriceFirstClassByInternet(){
-        this.firstClassPriceByInternet = (basicPrice + FIRST) * INTERNET;
+    public int getSoldTicketsFirstClassCounter() {
+        return soldTicketsFirstClassCounter;
     }
 
-    private void calculatePriceEconomyClassByInternet(){
-        this.economyClassPriceByInternet = (basicPrice + ECONOMY) * INTERNET;
+    public int getSoldTicketsEconomyClassTravelOffice() {
+        return soldTicketsEconomyClassTravelOffice;
     }
 
-    private void calculatePriceFirstClassByTravelOffice(){
-        this.firstClassPriceByTravelOffice = (basicPrice + FIRST) * TRAVELOFFICE;
+    public int getSoldTicketsFirstClassTravelOffice() {
+        return soldTicketsFirstClassTravelOffice;
     }
 
-    private void calculatePriceEconomyClassByTravelOffice(){
-        this.economyClassPriceByTravelOffice = (basicPrice + ECONOMY) * TRAVELOFFICE;
+    public int getSoldTicketsEconomyClassInternet() {
+        return soldTicketsEconomyClassInternet;
     }
 
-    private void calculatePriceFirstClassByCounter(){
-        this.firstClassPriceByCounter = (basicPrice + FIRST) * COUNTER;
+    public int getSoldTicketsFirstClassInternet() {
+        return soldTicketsFirstClassInternet;
     }
 
-    private void calculatePriceEconomyClassByCounter(){
-        this.economyClassPriceByCounter = (basicPrice + ECONOMY) * COUNTER;
+    public double getRevenue() {
+        return revenue;
     }
 
-    private void buildPrices() {
-        calculatePriceFirstClassByInternet();
-        calculatePriceEconomyClassByInternet();
-        calculatePriceFirstClassByTravelOffice();
-        calculatePriceEconomyClassByTravelOffice();
-        calculatePriceFirstClassByCounter();
-        calculatePriceEconomyClassByCounter();
+    private int soldTicketsEconomyClassCounter = 6;
+
+    public CalculatedRevenue(CalculatedPrice price){
+        this.basicPrice = price.getBasicPrice();
+        this.firstClassPriceByInternet = price.getFirstClassPriceByInternet();
+        this.economyClassPriceByInternet = price.getEconomyClassPriceByInternet();
+        this.firstClassPriceByCounter = price.getFirstClassPriceByCounter();
+        this.economyClassPriceByCounter = price.getEconomyClassPriceByCounter();
+        this.firstClassPriceByTravelOffice = price.getFirstClassPriceByTravelOffice();
+        this.economyClassPriceByTravelOffice = price.getEconomyClassPriceByTravelOffice();
+        buildRevenue();
     }
 
-    public double getBasicPrice() {
-        return basicPrice;
+    private void buildRevenue() {
+        double revenueForInternet = firstClassPriceByInternet * soldTicketsFirstClassInternet + economyClassPriceByInternet * soldTicketsEconomyClassInternet;
+        double revenueForCounter = firstClassPriceByCounter * soldTicketsFirstClassCounter + economyClassPriceByCounter * soldTicketsEconomyClassCounter;
+        double revenueForTravelOffice = firstClassPriceByTravelOffice * soldTicketsFirstClassTravelOffice + economyClassPriceByTravelOffice * soldTicketsEconomyClassTravelOffice;
+        this.revenue = revenueForCounter + revenueForInternet + revenueForTravelOffice;
     }
 
-    public double getFirstClassPriceByInternet() {
-        return firstClassPriceByInternet;
-    }
-
-    public double getEconomyClassPriceByInternet() {
-        return economyClassPriceByInternet;
-    }
-
-    public double getFirstClassPriceByTravelOffice() {
-        return firstClassPriceByTravelOffice;
-    }
-
-    public double getEconomyClassPriceByTravelOffice() {
-        return economyClassPriceByTravelOffice;
-    }
-
-    public double getFirstClassPriceByCounter() {
-        return firstClassPriceByCounter;
-    }
-
-    public double getEconomyClassPriceByCounter() {
-        return economyClassPriceByCounter;
-    }
 }

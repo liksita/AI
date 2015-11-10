@@ -2,7 +2,7 @@ package de.hawhamburg.microservices.composite.revenue.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
-import de.hawhamburg.microservices.core.price.jpa.domain.Price;
+import de.hawhamburg.microservices.composite.price.model.CalculatedPrice;
 import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
@@ -26,10 +26,10 @@ public class ResponseHelper {
     }
 
 
-    public static Price response2Price(ResponseEntity<String> response) {
+    public static CalculatedPrice response2Revenue(ResponseEntity<String> response) {
         ResponseHelper responseHelper = new ResponseHelper();
         try {
-            return responseHelper.getReader(Price.class).readValue(response.getBody());
+            return responseHelper.getReader(CalculatedPrice.class).readValue(response.getBody());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

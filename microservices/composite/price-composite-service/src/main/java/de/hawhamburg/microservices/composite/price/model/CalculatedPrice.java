@@ -2,9 +2,12 @@ package de.hawhamburg.microservices.composite.price.model;
 
 import de.hawhamburg.microservices.core.price.jpa.domain.Price;
 
+import javax.persistence.Entity;
+
 /**
  * Created by Ole on 07.11.2015.
  */
+@Entity
 public class CalculatedPrice {
 
     private final double FIRST = 50;
@@ -20,6 +23,9 @@ public class CalculatedPrice {
     private double economyClassPriceByTravelOffice;
     private double firstClassPriceByCounter;
     private double economyClassPriceByCounter;
+
+    public CalculatedPrice() {}
+
 
     public CalculatedPrice(Price price){
         this.basicPrice = price.getValue();
@@ -85,5 +91,56 @@ public class CalculatedPrice {
 
     public double getEconomyClassPriceByCounter() {
         return economyClassPriceByCounter;
+    }
+
+
+
+
+    public static class CalculatedPriceBuilder{
+        private CalculatedPrice calcPrice;
+
+        public CalculatedPriceBuilder(){
+            this.calcPrice = new CalculatedPrice();
+        }
+
+        public CalculatedPriceBuilder withValue(double basicPrice){
+            this.calcPrice.basicPrice = basicPrice;
+            return this;
+        }
+
+        public CalculatedPriceBuilder withFirstInet(double firstClassPriceByInternet){
+            this.calcPrice.firstClassPriceByInternet = firstClassPriceByInternet;
+            return this;
+        }
+
+        public CalculatedPriceBuilder withFirstCounter(double firstClassPriceByCounter){
+            this.calcPrice.firstClassPriceByCounter = firstClassPriceByCounter;
+            return this;
+        }
+
+        public CalculatedPriceBuilder withFirstOffice(double firstClassPriceByTravelOffice){
+            this.calcPrice.firstClassPriceByTravelOffice = firstClassPriceByTravelOffice;
+            return this;
+        }
+
+        public CalculatedPriceBuilder withEcoInet(double economyClassPriceByInternet){
+            this.calcPrice.economyClassPriceByInternet = economyClassPriceByInternet;
+            return this;
+        }
+
+        public CalculatedPriceBuilder withEcoCounter(double economyClassPriceByCounter){
+            this.calcPrice.economyClassPriceByCounter = economyClassPriceByCounter;
+            return this;
+        }
+
+        public CalculatedPriceBuilder withEcoOffice(double economyClassPriceByTravelOffice){
+            this.calcPrice.economyClassPriceByTravelOffice = economyClassPriceByTravelOffice;
+            return this;
+        }
+
+
+        public CalculatedPrice build(){
+            return this.calcPrice;
+        }
     }
 }

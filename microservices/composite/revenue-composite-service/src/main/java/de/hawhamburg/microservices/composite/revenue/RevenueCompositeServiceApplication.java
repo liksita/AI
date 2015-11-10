@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 //SOF TODO enable client in live system
 //@EnableDiscoveryClient
 @SpringBootApplication
-@ComponentScan({"de.hawhamburg.microservices.composite.revenue", "se.callista.microservices.util"})
+@ComponentScan({"de.hawhamburg.microservices.composite.revenue", "se.callista.microservices.util","de.hawhamburg.microservices.composite.price"})
 public class RevenueCompositeServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(RevenueCompositeServiceApplication.class,args);

@@ -5,6 +5,7 @@ import de.hawhamburg.microservices.core.price.jpa.domain.Price;
 /**
  * Created by Ole on 07.11.2015.
  */
+
 public class CalculatedRevenue {
 
     private final double FIRST = 50;

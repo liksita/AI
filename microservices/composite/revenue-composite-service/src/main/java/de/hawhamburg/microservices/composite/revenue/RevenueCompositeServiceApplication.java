@@ -1,4 +1,4 @@
-package de.hawhamburg.microservices.composite.price;
+package de.hawhamburg.microservices.composite.revenue;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,8 +11,8 @@ import org.springframework.context.annotation.ComponentScan;
 //@EnableDiscoveryClient
 @SpringBootApplication
 @ComponentScan({"de.hawhamburg.microservices.composite.price", "se.callista.microservices.util"})
-public class PriceCompositeServiceApplication {
+public class RevenueCompositeServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(PriceCompositeServiceApplication.class,args);
+        SpringApplication.run(RevenueCompositeServiceApplication.class,args);
     }
 }

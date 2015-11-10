@@ -1,6 +1,6 @@
-package de.hawhamburg.microservices.composite.price.service;
+package de.hawhamburg.microservices.composite.revenue.service;
 
-import de.hawhamburg.microservices.composite.price.util.ResponseHelper;
+import de.hawhamburg.microservices.composite.revenue.util.ResponseHelper;
 import de.hawhamburg.microservices.core.price.jpa.domain.Price;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -16,7 +16,7 @@ import java.util.UUID;
  * Created by Ole on 07.11.2015.
  */
 @Service
-public class PriceCompositeIntegration {
+public class RevenueCompositeIntegration {
 
     @Autowired
     private ServiceUtils utils;

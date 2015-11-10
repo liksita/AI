@@ -50,7 +50,7 @@ public class PriceCompositeController {
 
     @RequestMapping(value = "/price", method = RequestMethod.DELETE)
     public ResponseEntity<CalculatedPrice> deletePrice(@RequestBody final Price price){
-        ResponseEntity<Price> priceResult = priceCompositeIntegration.removePrice(price);
+        ResponseEntity<Price> priceResult = priceCompositeIntegration.deletePrice(price);
         if(!priceResult.getStatusCode().is2xxSuccessful()){
             return utils.createResponse(null,priceResult.getStatusCode());
         }
@@ -58,7 +58,7 @@ public class PriceCompositeController {
     }
 
     @RequestMapping(value = "/price", method = RequestMethod.PATCH)
-    public ResponseEntity<CalculatedPrice> deletePrice(@RequestBody final Price price){
+    public ResponseEntity<CalculatedPrice> updatePrice(@RequestBody final Price price){
         ResponseEntity<Price> priceResult = priceCompositeIntegration.patchPrice(price);
         if(!priceResult.getStatusCode().is2xxSuccessful()){
             return utils.createResponse(null,priceResult.getStatusCode());
@@ -67,7 +67,7 @@ public class PriceCompositeController {
     }
 
     @RequestMapping(value = "/price", method = RequestMethod.PUT)
-    public ResponseEntity<CalculatedPrice> deletePrice(@RequestBody final Price price){
+    public ResponseEntity<CalculatedPrice> update2Price(@RequestBody final Price price){
         ResponseEntity<Price> priceResult = priceCompositeIntegration.putPrice(price);
         if(!priceResult.getStatusCode().is2xxSuccessful()){
             return utils.createResponse(null,priceResult.getStatusCode());

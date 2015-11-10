@@ -73,6 +73,7 @@ public class PriceController {
         String uuid = "95fbe489-9217-469f-8771-cf15ee1051b5";
 //        UUID uuid = UUID.randomUUID();
         String json = "{\"value\":260.0,\"flightId\":\""+uuid+"\"}";
+//        String json = "{\"value\":260.0,\"flightId\":\""95fbe489-9217-469f-8771-cf15ee1051b5"+"\"}";
         System.out.println(json);
         writer.write(json);
         writer.flush();

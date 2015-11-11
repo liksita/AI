@@ -2,12 +2,10 @@ package de.hawhamburg.microservices.composite.price.model;
 
 import de.hawhamburg.microservices.core.price.jpa.domain.Price;
 
-import javax.persistence.Entity;
-
 /**
  * Created by Ole on 07.11.2015.
  */
-@Entity
+
 public class CalculatedPrice {
 
     private final double FIRST = 50;

@@ -26,6 +26,7 @@ public class CalculatedRevenue {
     private int soldTicketsFirstClassTravelOffice = 5;
     private int soldTicketsEconomyClassTravelOffice = 30;
     private int soldTicketsFirstClassCounter = 2;
+    private int soldTicketsEconomyClassCounter = 6;
 
     public int getSoldTicketsEconomyClassCounter() {
         return soldTicketsEconomyClassCounter;
@@ -55,7 +56,7 @@ public class CalculatedRevenue {
         return revenue;
     }
 
-    private int soldTicketsEconomyClassCounter = 6;
+
 
     public CalculatedRevenue(CalculatedPrice price){
         this.basicPrice = price.getBasicPrice();

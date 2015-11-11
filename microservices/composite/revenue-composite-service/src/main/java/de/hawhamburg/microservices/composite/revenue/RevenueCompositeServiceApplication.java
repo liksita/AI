@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 //@EnableDiscoveryClient
 @SpringBootApplication
 @ComponentScan({"de.hawhamburg.microservices.composite.revenue", "se.callista.microservices.util","de.hawhamburg.microservices.composite.price"})
+//@ComponentScan({"de.hawhamburg.microservices.composite.revenue", "se.callista.microservices.util"})
 public class RevenueCompositeServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(RevenueCompositeServiceApplication.class,args);
